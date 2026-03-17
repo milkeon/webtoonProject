@@ -21,10 +21,10 @@
         }
 
         // 3번째 클릭 시 확실하게 생존 엔딩으로 이동시키기
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const trigger3 = document.getElementById('trigger-3');
             if (trigger3) {
-                trigger3.addEventListener('change', function() {
+                trigger3.addEventListener('change', function () {
                     if (this.checked) {
                         // 약간의 지연을 주어 CSS 상태 변화가 반영된 후 이동
                         setTimeout(() => {
@@ -86,9 +86,7 @@
 
                     <!-- 3회 클릭: 타앙!! (발사 효과 발생과 동시에 생존지로 이동) -->
                     <div class="click-effect eff-3">타앙!!</div>
-                    <a href="#survival-anchor" class="anchor-link btn-3">
-                        <label for="trigger-3" class="trigger-btn">방아쇠 당기기 (발사!!)</label>
-                    </a>
+                    <label for="trigger-3" class="trigger-btn btn-3" onclick="location.href='#survival-anchor'">방아쇠 당기기</label>
                 </div>
             </div>
         </section>

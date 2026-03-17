@@ -360,7 +360,7 @@ body {
 #trigger-3:checked~.container .survival {
     display: flex;
     visibility: visible;
-    height: auto;
+    min-height: 100vh;
     animation: glow-to-white 2s forwards;
     scroll-margin-top: 0;
     background: #fff;
