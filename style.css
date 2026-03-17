@@ -44,7 +44,7 @@ body {
     width: 100%;
     height: auto;
     border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     margin: 20px 0;
 }
 
@@ -58,7 +58,7 @@ body {
     font-weight: 900;
     margin-bottom: 10px;
     letter-spacing: -1px;
-    text-shadow: 0 0 20px rgba(255,255,255,0.2);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
 .desc {
@@ -93,10 +93,25 @@ body {
 
 /* 스크롤 트리거 시뮬레이션: 특정 영역이 뷰포트에 들어올 때 발동 */
 @keyframes pop-up {
-    0% { opacity: 0; transform: translate(-50%, -50%) scale(2); }
-    10% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-    90% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-    100% { opacity: 0; transform: translate(-50%, -50%) scale(1.1); }
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(2);
+    }
+
+    10% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    90% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
 }
 
 /* 이 기법은 실제 스크롤 애니메이션 라이브러리 없이 순수 CSS로 점프스케어를 구현하기 위함 */
@@ -108,6 +123,7 @@ body {
 /* Scene 3: Interaction */
 .interaction {
     background: radial-gradient(circle, transparent 20%, #000 80%);
+    margin-bottom: 100px;
 }
 
 .vignette {
@@ -121,10 +137,10 @@ body {
 }
 
 .interaction-ui {
-    background: rgba(0,0,0,0.6);
+    background: rgba(0, 0, 0, 0.6);
     padding: 40px;
     border-radius: 20px;
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
 }
 
@@ -137,8 +153,15 @@ body {
 }
 
 @keyframes flash {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
 }
 
 .trigger-buttons {
@@ -185,52 +208,105 @@ body {
     transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.eff-1, .eff-2 { color: #888; }
-.eff-3 { 
-    color: var(--accent-gold); 
+.eff-1,
+.eff-2 {
+    color: #888;
+}
+
+.eff-3 {
+    color: var(--accent-gold);
     font-size: 4rem;
     text-shadow: 0 0 20px var(--accent-red);
 }
 
-#trigger-1:checked ~ .container .eff-1 { opacity: 1; transform: translateX(-50%) translateY(-10px); }
-#trigger-2:checked ~ .container .eff-2 { opacity: 1; transform: translateX(-50%) translateY(-10px); }
-#trigger-3:checked ~ .container .eff-3 { 
-    opacity: 1; 
-    animation: shot-shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+#trigger-1:checked~.container .eff-1 {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-10px);
+}
+
+#trigger-2:checked~.container .eff-2 {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-10px);
+}
+
+#trigger-3:checked~.container .eff-3 {
+    opacity: 1;
+    animation: shot-shake 0.5s cubic-bezier(.36, .07, .19, .97) both;
 }
 
 @keyframes shot-shake {
-    0% { transform: translateX(-50%) scale(0.5); }
-    20% { transform: translateX(-50%) scale(1.2) rotate(5deg); }
-    40% { transform: translateX(-50%) scale(1) rotate(-5deg); }
-    100% { transform: translateX(-50%) scale(1); }
+    0% {
+        transform: translateX(-50%) scale(0.5);
+    }
+
+    20% {
+        transform: translateX(-50%) scale(1.2) rotate(5deg);
+    }
+
+    40% {
+        transform: translateX(-50%) scale(1) rotate(-5deg);
+    }
+
+    100% {
+        transform: translateX(-50%) scale(1);
+    }
 }
 
 /* 버튼 표시 로직 */
 .trigger-buttons {
-    position: relative; /* 효과 텍스트 기준점 */
+    position: relative;
+    /* 효과 텍스트 기준점 */
 }
 
-.btn-2, .anchor-link, .eff-2, .eff-3 {
+.btn-2,
+.anchor-link,
+.eff-2,
+.eff-3 {
     display: none;
 }
 
-#trigger-1:checked ~ .container .eff-1 { display: block; }
-#trigger-1:checked ~ .container .btn-1 { display: none; }
-#trigger-1:checked ~ .container .btn-2 { display: inline-block; background: #666; }
+#trigger-1:checked~.container .eff-1 {
+    display: block;
+}
 
-#trigger-2:checked ~ .container .eff-1 { display: none; }
-#trigger-2:checked ~ .container .eff-2 { display: block; }
-#trigger-2:checked ~ .container .btn-2 { display: none; }
-#trigger-2:checked ~ .container .btn-3 { 
-    display: inline-block; 
-    background: var(--accent-red); 
+#trigger-1:checked~.container .btn-1 {
+    display: none;
+}
+
+#trigger-1:checked~.container .btn-2 {
+    display: inline-block;
+    background: #666;
+}
+
+#trigger-2:checked~.container .eff-1 {
+    display: none;
+}
+
+#trigger-2:checked~.container .eff-2 {
+    display: block;
+}
+
+#trigger-2:checked~.container .btn-2 {
+    display: none;
+}
+
+#trigger-2:checked~.container .btn-3 {
+    display: inline-block;
+    background: var(--accent-red);
     box-shadow: 0 0 30px var(--accent-red);
     border-radius: 5px;
 }
 
-#trigger-3:checked ~ .container .eff-2 { display: none; }
-#trigger-3:checked ~ .container .eff-3 { display: block; }
+#trigger-3:checked~.container .eff-3 {
+    display: block;
+}
+
+/* 안내 문구 숨김 (겹침 방지) */
+#trigger-1:checked~.container .instruction,
+#trigger-2:checked~.container .instruction,
+#trigger-3:checked~.container .instruction {
+    display: none;
+}
 
 .anchor-link {
     text-decoration: none;
@@ -261,21 +337,28 @@ body {
     display: none;
 }
 
-#trigger-3:checked ~ .container .death {
+#trigger-3:checked~.container .death {
     display: none;
 }
 
-#trigger-3:checked ~ .container .survival {
+#trigger-3:checked~.container .survival {
     display: flex;
     animation: glow-to-white 2s forwards;
     scroll-margin-top: 0;
-    background: #fff; /* 밝은 화면 요구사항 반영 */
-    color: #000;      /* 텍스트 가독성을 위해 검정색으로 변경 */
+    background: #fff;
+    /* 밝은 화면 요구사항 반영 */
+    color: #000;
+    /* 텍스트 가독성을 위해 검정색으로 변경 */
 }
 
 @keyframes glow-to-white {
-    from { filter: brightness(0); }
-    to { filter: brightness(1); }
+    from {
+        filter: brightness(0);
+    }
+
+    to {
+        filter: brightness(1);
+    }
 }
 
 .content.overlay {
@@ -292,8 +375,13 @@ body {
     margin-bottom: 20px;
 }
 
-.survival .end-title { color: var(--accent-gold); }
-.death .end-title { color: var(--accent-red); }
+.survival .end-title {
+    color: var(--accent-gold);
+}
+
+.death .end-title {
+    color: var(--accent-red);
+}
 
 .retry-btn {
     display: inline-block;
@@ -313,6 +401,11 @@ body {
 
 /* 모바일 정렬 */
 @media (max-width: 600px) {
-    .title { font-size: 2.5rem; }
-    .end-title { font-size: 3rem; }
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .end-title {
+        font-size: 3rem;
+    }
 }
