@@ -234,13 +234,18 @@ body {
     animation: shot-shake 0.5s cubic-bezier(.36, .07, .19, .97) both;
 }
 
+#trigger-4:checked~.container .eff-3 {
+    opacity: 0.5;
+    transform: translateX(-50%) translateY(-20px) scale(0.8);
+}
+
 @keyframes shot-shake {
     0% {
         transform: translateX(-50%) scale(0.5);
     }
 
     20% {
-        transform: translateX(-50%) scale(1.2) rotate(5deg);
+        transform: translateX(-50%) scale(1.5) rotate(5deg);
     }
 
     40% {
@@ -248,7 +253,7 @@ body {
     }
 
     100% {
-        transform: translateX(-50%) scale(1);
+        transform: translateX(-50%) scale(1.2);
     }
 }
 
@@ -259,12 +264,14 @@ body {
 }
 
 .btn-2,
+.btn-3,
 .anchor-link,
 .eff-2,
 .eff-3 {
     display: none;
 }
 
+/* 1단계: 찰칵 */
 #trigger-1:checked~.container .eff-1 {
     display: block;
 }
@@ -278,6 +285,7 @@ body {
     background: #666;
 }
 
+/* 2단계: 찰칵 */
 #trigger-2:checked~.container .eff-1 {
     display: none;
 }
@@ -292,19 +300,41 @@ body {
 
 #trigger-2:checked~.container .btn-3 {
     display: inline-block;
-    background: var(--accent-red);
-    box-shadow: 0 0 30px var(--accent-red);
-    border-radius: 5px;
+    background: #888;
+}
+
+/* 3단계: 타앙!! (발사) */
+#trigger-3:checked~.container .eff-2 {
+    display: none;
 }
 
 #trigger-3:checked~.container .eff-3 {
     display: block;
 }
 
+#trigger-3:checked~.container .btn-3 {
+    display: none;
+}
+
+#trigger-3:checked~.container .btn-4 {
+    display: inline-block;
+    background: var(--accent-red);
+    box-shadow: 0 0 40px var(--accent-red);
+    border-radius: 5px;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
 /* 안내 문구 숨김 (겹침 방지) */
 #trigger-1:checked~.container .instruction,
 #trigger-2:checked~.container .instruction,
-#trigger-3:checked~.container .instruction {
+#trigger-3:checked~.container .instruction,
+#trigger-4:checked~.container .instruction {
     display: none;
 }
 
