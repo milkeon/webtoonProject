@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>흡혈귀의 추격 - 인터랙티브 웹툰</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 상태 관리용 숨겨진 체크박스 -->
+    <input type="checkbox" id="trigger-1" class="trigger-check">
+    <input type="checkbox" id="trigger-2" class="trigger-check">
+    <input type="checkbox" id="trigger-3" class="trigger-check">
+
+    <div class="container">
+        <!-- Scene 1: 추격 -->
+        <section class="scene intro">
+            <div class="content">
+                <h1 class="title">흡혈귀의 추격</h1>
+                <p class="desc">도망쳐야 해... 그들이 오고 있어.</p>
+            </div>
+            <img src="assets/scene1_run01_1773718414268.png" alt="도망치는 주인공" class="scene-img">
+        </section>
+
+        <!-- Scene 2: 발견 및 점프스케어 -->
+        <section class="scene suspense">
+            <div class="scare-trigger"></div>
+            <img src="assets/scene2_jumpscare01_1773718441888.png" alt="흡혈귀의 습격" class="jumpscare-img">
+            
+            <div class="content">
+                <p class="desc accent">갑자기 나타난 그림자!</p>
+                <p class="desc">낡은 리볼버를 주웠지만, 탄환이 있는지 확인할 시간이 없다.</p>
+            </div>
+            <div class="revolver-view">
+                <img src="assets/scene2_revolver01_1773718426723.png" alt="리볼버" class="scene-img">
+            </div>
+        </section>
+
+        <!-- Scene 3: 선택 (방아쇠) -->
+        <section class="scene interaction">
+            <div class="vignette"></div>
+            <div class="interaction-ui">
+                <p class="instruction">방아쇠를 당겨!</p>
+                <div class="trigger-buttons">
+                    <label for="trigger-1" class="trigger-btn btn-1">방아쇠 당기기</label>
+                    <label for="trigger-2" class="trigger-btn btn-2">방아쇠 당기기</label>
+                    <label for="trigger-3" class="trigger-btn btn-3">방아쇠 당기기</label>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 4: 결말 분기 -->
+        <div class="ending-wrapper">
+            <!-- 사망 엔딩 (기본) -->
+            <section class="scene ending death">
+                <img src="assets/scene4_death01_1773718473960.png" alt="사망" class="scene-img">
+                <div class="content overlay">
+                    <h2 class="end-title">발사 실패</h2>
+                    <p class="desc">탄환이 없었다... 의식이 흐려진다.</p>
+                    <a href="index.html" class="retry-btn">다시 시도</a>
+                </div>
+            </section>
+
+            <!-- 생존 엔딩 (3번 클릭 시 노출) -->
+            <section class="scene ending survival">
+                <img src="assets/scene4_survival01_1773718457702.png" alt="생존" class="scene-img">
+                <div class="content overlay">
+                    <h2 class="end-title">생존</h2>
+                    <p class="desc">탕! 마지막 탄환이 흡혈귀의 심장을 꿰뚫었다.</p>
+                    <p class="desc">새벽의 태양이 도시를 비춘다.</p>
+                    <a href="index.html" class="retry-btn">다시 하기</a>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>
