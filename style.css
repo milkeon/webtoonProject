@@ -364,6 +364,11 @@ body {
     transition: background 1s ease 1s; /* 1초 지연 후 배경색 전환 */
 }
 
+/* 생존 시 사망 엔딩 숨기기 */
+#trigger-3:checked~.container .death {
+    display: none !important;
+}
+
 #trigger-3:checked~.container .survival {
     display: flex;
     visibility: visible;
