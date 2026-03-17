@@ -24,6 +24,7 @@ body {
     flex-direction: column;
     align-items: center;
     width: 100%;
+    background: linear-gradient(to bottom, #333333 0%, #1a1a1a 15%, #050505 40%, #000000 70%, #000000 100%);
 }
 
 .scene {
@@ -35,7 +36,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 40px 20px;
+    padding: 10vh 20px;
     text-align: center;
 }
 
@@ -172,7 +173,7 @@ body {
 }
 
 /* 버튼 표시 로직 */
-.btn-2, .btn-3 {
+.btn-2, .anchor-link {
     display: none;
 }
 
@@ -180,12 +181,36 @@ body {
 #trigger-1:checked ~ .container .btn-2 { display: inline-block; background: #666; }
 
 #trigger-2:checked ~ .container .btn-2 { display: none; }
-#trigger-2:checked ~ .container .btn-3 { display: inline-block; background: var(--accent-red); box-shadow: 0 0 20px var(--accent-red); }
+#trigger-2:checked ~ .container .btn-3 { 
+    display: inline-block; 
+    background: var(--accent-red); 
+    box-shadow: 0 0 30px var(--accent-red);
+    border-radius: 5px;
+}
 
-/* 엔딩 분기 로직 */
+.anchor-link {
+    text-decoration: none;
+}
+
+/* 엔딩 분기 로직 및 중앙 정렬 */
 .ending-wrapper {
     width: 100%;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #000;
+}
+
+.ending {
+    width: 100%;
+    max-width: 800px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
 }
 
 .survival {
@@ -199,6 +224,7 @@ body {
 #trigger-3:checked ~ .container .survival {
     display: flex;
     animation: glow-in 2s forwards;
+    scroll-margin-top: 0;
 }
 
 @keyframes glow-in {

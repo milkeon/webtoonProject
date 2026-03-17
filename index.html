@@ -47,7 +47,9 @@
                 <div class="trigger-buttons">
                     <label for="trigger-1" class="trigger-btn btn-1">방아쇠 당기기</label>
                     <label for="trigger-2" class="trigger-btn btn-2">방아쇠 당기기</label>
-                    <label for="trigger-3" class="trigger-btn btn-3">방아쇠 당기기</label>
+                    <a href="#survival-anchor" class="anchor-link btn-3">
+                        <label for="trigger-3" class="trigger-btn">방아쇠 당기기</label>
+                    </a>
                 </div>
             </div>
         </section>
@@ -55,7 +57,7 @@
         <!-- Scene 4: 결말 분기 -->
         <div class="ending-wrapper">
             <!-- 사망 엔딩 (기본) -->
-            <section class="scene ending death">
+            <section class="scene ending death" id="death-ending">
                 <img src="assets/scene4_death01_1773718473960.png" alt="사망" class="scene-img">
                 <div class="content overlay">
                     <h2 class="end-title">발사 실패</h2>
@@ -65,7 +67,7 @@
             </section>
 
             <!-- 생존 엔딩 (3번 클릭 시 노출) -->
-            <section class="scene ending survival">
+            <section class="scene ending survival" id="survival-anchor">
                 <img src="assets/scene4_survival01_1773718457702.png" alt="생존" class="scene-img">
                 <div class="content overlay">
                     <h2 class="end-title">생존</h2>
