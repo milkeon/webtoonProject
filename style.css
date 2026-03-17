@@ -231,7 +231,7 @@ body {
 
 #trigger-3:checked~.container .eff-3 {
     opacity: 1;
-    animation: shot-shake 0.5s cubic-bezier(.36, .07, .19, .97) both;
+    animation: shot-shake 0.8s cubic-bezier(.36, .07, .19, .97) both;
 }
 
 #trigger-4:checked~.container .eff-3 {
@@ -244,16 +244,17 @@ body {
         transform: translateX(-50%) scale(0.5);
     }
 
-    20% {
-        transform: translateX(-50%) scale(1.5) rotate(5deg);
+    10% {
+        transform: translateX(-50%) scale(2.5) rotate(10deg);
+        filter: brightness(2);
     }
 
-    40% {
-        transform: translateX(-50%) scale(1) rotate(-5deg);
+    30% {
+        transform: translateX(-50%) scale(1.5) rotate(-10deg);
     }
 
     100% {
-        transform: translateX(-50%) scale(1.2);
+        transform: translateX(-50%) scale(1.8);
     }
 }
 
