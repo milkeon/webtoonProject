@@ -172,14 +172,55 @@ body {
     display: none;
 }
 
+/* 클릭 효과 텍스트 */
+.click-effect {
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    font-weight: 900;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.eff-1, .eff-2 { color: #888; }
+.eff-3 { 
+    color: var(--accent-gold); 
+    font-size: 4rem;
+    text-shadow: 0 0 20px var(--accent-red);
+}
+
+#trigger-1:checked ~ .container .eff-1 { opacity: 1; transform: translateX(-50%) translateY(-10px); }
+#trigger-2:checked ~ .container .eff-2 { opacity: 1; transform: translateX(-50%) translateY(-10px); }
+#trigger-3:checked ~ .container .eff-3 { 
+    opacity: 1; 
+    animation: shot-shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shot-shake {
+    0% { transform: translateX(-50%) scale(0.5); }
+    20% { transform: translateX(-50%) scale(1.2) rotate(5deg); }
+    40% { transform: translateX(-50%) scale(1) rotate(-5deg); }
+    100% { transform: translateX(-50%) scale(1); }
+}
+
 /* 버튼 표시 로직 */
-.btn-2, .anchor-link {
+.trigger-buttons {
+    position: relative; /* 효과 텍스트 기준점 */
+}
+
+.btn-2, .anchor-link, .eff-2, .eff-3 {
     display: none;
 }
 
+#trigger-1:checked ~ .container .eff-1 { display: block; }
 #trigger-1:checked ~ .container .btn-1 { display: none; }
 #trigger-1:checked ~ .container .btn-2 { display: inline-block; background: #666; }
 
+#trigger-2:checked ~ .container .eff-1 { display: none; }
+#trigger-2:checked ~ .container .eff-2 { display: block; }
 #trigger-2:checked ~ .container .btn-2 { display: none; }
 #trigger-2:checked ~ .container .btn-3 { 
     display: inline-block; 
@@ -187,6 +228,9 @@ body {
     box-shadow: 0 0 30px var(--accent-red);
     border-radius: 5px;
 }
+
+#trigger-3:checked ~ .container .eff-2 { display: none; }
+#trigger-3:checked ~ .container .eff-3 { display: block; }
 
 .anchor-link {
     text-decoration: none;
@@ -223,13 +267,15 @@ body {
 
 #trigger-3:checked ~ .container .survival {
     display: flex;
-    animation: glow-in 2s forwards;
+    animation: glow-to-white 2s forwards;
     scroll-margin-top: 0;
+    background: #fff; /* 밝은 화면 요구사항 반영 */
+    color: #000;      /* 텍스트 가독성을 위해 검정색으로 변경 */
 }
 
-@keyframes glow-in {
-    from { filter: brightness(0); background: white; }
-    to { filter: brightness(1); background: var(--bg-dark); }
+@keyframes glow-to-white {
+    from { filter: brightness(0); }
+    to { filter: brightness(1); }
 }
 
 .content.overlay {
