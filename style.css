@@ -12,11 +12,13 @@
 }
 
 body {
-    background-color: var(--bg-dark);
+    background-color: lightgrey;
     color: var(--text-light);
     font-family: 'Noto Sans KR', sans-serif;
     overflow-x: hidden;
     scroll-behavior: smooth;
+    background-image: linear-gradient(to bottom, lightgrey 0%, #888 20%, #444 50%, #111 80%, black 100%);
+    background-attachment: fixed;
 }
 
 .container {
@@ -24,7 +26,6 @@ body {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    background: linear-gradient(to bottom, #333333 0%, #1a1a1a 15%, #050505 40%, #000000 70%, #000000 100%);
 }
 
 .scene {
@@ -49,7 +50,13 @@ body {
 }
 
 .content {
-    margin-bottom: 20px;
+    margin-bottom: 200px;
+    z-index: 10;
+}
+
+.content-background {
+    margin-top: 1000px;
+    margin-bottom: 1000px;
     z-index: 10;
 }
 
@@ -353,8 +360,9 @@ body {
     display: none;
 }
 
-#trigger-3:checked~.container .death {
-    display: none;
+#trigger-3:checked~.container {
+    background: #fff;
+    transition: background 1s ease 1s; /* 1초 지연 후 배경색 전환 */
 }
 
 #trigger-3:checked~.container .survival {
@@ -363,7 +371,7 @@ body {
     min-height: 100vh;
     opacity: 1;
     overflow: visible;
-    animation: glow-to-white 2s forwards;
+    animation: glow-to-white 1.5s forwards;
     scroll-margin-top: 0;
     background: #fff;
     color: #000;
@@ -371,7 +379,7 @@ body {
 
 /* 생존 리스너를 위한 기본 상태 조정: 항상 존재하지만 보이지 않게 */
 .survival {
-    display: flex; 
+    display: flex;
     visibility: hidden;
     height: 0;
     overflow: hidden;
