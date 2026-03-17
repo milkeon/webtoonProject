@@ -303,7 +303,7 @@ body {
     background: #888;
 }
 
-/* 3단계: 타앙!! (발사) */
+/* 3단계: 타앙!! (발사 및 이동) */
 #trigger-3:checked~.container .eff-2 {
     display: none;
 }
@@ -316,25 +316,10 @@ body {
     display: none;
 }
 
-#trigger-3:checked~.container .btn-4 {
-    display: inline-block;
-    background: var(--accent-red);
-    box-shadow: 0 0 40px var(--accent-red);
-    border-radius: 5px;
-    animation: pulse 1s infinite;
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
-
 /* 안내 문구 숨김 (겹침 방지) */
 #trigger-1:checked~.container .instruction,
 #trigger-2:checked~.container .instruction,
-#trigger-3:checked~.container .instruction,
-#trigger-4:checked~.container .instruction {
+#trigger-3:checked~.container .instruction {
     display: none;
 }
 
