@@ -359,12 +359,19 @@ body {
 
 #trigger-3:checked~.container .survival {
     display: flex;
+    visibility: visible;
+    height: auto;
     animation: glow-to-white 2s forwards;
     scroll-margin-top: 0;
     background: #fff;
     /* 밝은 화면 요구사항 반영 */
     color: #000;
     /* 텍스트 가독성을 위해 검정색으로 변경 */
+}
+
+/* 생존 리스너를 위한 기본 상태 조정 */
+.survival {
+    display: none; /* 기본은 숨김 */
 }
 
 @keyframes glow-to-white {

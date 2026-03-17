@@ -19,6 +19,21 @@
         if ('scrollRestoration' in history) {
             history.scrollRestoration = 'manual';
         }
+
+        // 3번째 클릭 시 확실하게 생존 엔딩으로 이동시키기
+        document.addEventListener('DOMContentLoaded', function() {
+            const trigger3 = document.getElementById('trigger-3');
+            if (trigger3) {
+                trigger3.addEventListener('change', function() {
+                    if (this.checked) {
+                        // 약간의 지연을 주어 CSS 상태 변화가 반영된 후 이동
+                        setTimeout(() => {
+                            window.location.hash = '#survival-anchor';
+                        }, 50);
+                    }
+                });
+            }
+        });
     </script>
 </head>
 
