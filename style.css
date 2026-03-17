@@ -361,17 +361,22 @@ body {
     display: flex;
     visibility: visible;
     min-height: 100vh;
+    opacity: 1;
+    overflow: visible;
     animation: glow-to-white 2s forwards;
     scroll-margin-top: 0;
     background: #fff;
-    /* 밝은 화면 요구사항 반영 */
     color: #000;
-    /* 텍스트 가독성을 위해 검정색으로 변경 */
 }
 
-/* 생존 리스너를 위한 기본 상태 조정 */
+/* 생존 리스너를 위한 기본 상태 조정: 항상 존재하지만 보이지 않게 */
 .survival {
-    display: none; /* 기본은 숨김 */
+    display: flex; 
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease;
 }
 
 @keyframes glow-to-white {
