@@ -26,10 +26,10 @@
             if (trigger3) {
                 trigger3.addEventListener('change', function () {
                     if (this.checked) {
-                        // 약간의 지연을 주어 CSS 상태 변화가 반영된 후 이동
+                        // 1초(1000ms) 지연을 주어 '타앙!!' 효과를 충분히 보여준 뒤 이동
                         setTimeout(() => {
                             window.location.hash = '#survival-anchor';
-                        }, 50);
+                        }, 1000);
                     }
                 });
             }
@@ -84,9 +84,9 @@
                     <div class="click-effect eff-2">찰칵</div>
                     <label for="trigger-2" class="trigger-btn btn-2">방아쇠 당기기</label>
 
-                    <!-- 3회 클릭: 타앙!! (발사 효과 발생과 동시에 생존지로 이동) -->
+                    <!-- 3회 클릭: 타앙!! (발사 효과 발생 후 1초 뒤 생존지로 이동) -->
                     <div class="click-effect eff-3">타앙!!</div>
-                    <a href="#survival-anchor" class="trigger-btn btn-3" style="text-decoration: none;" onclick="document.getElementById('trigger-3').checked = true;">방아쇠 당기기</a>
+                    <label for="trigger-3" class="trigger-btn btn-3">방아쇠 당기기</label>
                 </div>
             </div>
         </section>
