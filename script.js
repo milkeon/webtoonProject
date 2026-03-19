@@ -32,18 +32,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /* ── 스크롤 페이드업 ── */
-    const fadeEls = document.querySelectorAll('.fade-up');
+    /* ── Intersection Observer: 스크롤 시 텍스트 슬라이드 업 ── */
+    const fadeEls = document.querySelectorAll('.slide-up');
+    const observerOptions = {
+        threshold: 0.1, // 10% 노출되었을 때 시작
+        rootMargin: '0px 0px -50px 0px' 
+    };
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const delay = parseInt(entry.target.dataset.delay) || 0;
-                setTimeout(() => entry.target.classList.add('in-view'), delay);
-                observer.unobserve(entry.target);
+                entry.target.classList.add('in-view');
             }
         });
-    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    }, observerOptions);
 
     fadeEls.forEach(el => observer.observe(el));
 
