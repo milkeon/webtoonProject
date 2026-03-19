@@ -24,6 +24,8 @@
 
             <!-- Scene 1: 추격 -->
             <div class="scene1">
+                <div class="scene-bg-layer" style="background-image: url('assets/escape.png'); top: 100vh;"></div>
+                <div class="scene-bg-layer" style="background-image: url('assets/shape.png'); top: 200vh;"></div>
                 <div class="content-block parallax-item" data-speed="0.15">
                     <p class="desc">타닥....탁.....</p>
                 </div>
@@ -31,17 +33,16 @@
                     <p class="desc">헉....허억.....</p>
                 </div>
                 <div class="content-block slide-up" data-delay="0">
-                    <p class="desc">어느 날부터 갑자기 나타난 흡혈귀들로 인해, 도시의 불빛은 사라졌다</p>
+                    <p class="desc">어느날부터 나타난 흡혈귀들로 인해 인류는 위기에 처했다.</p>
                 </div>
                 <div class="content-block slide-up" data-delay="150">
-                    <p class="desc">사람들은 흡혈귀를 피해 불을 끄고 도망다녔으나, 어둠은 인류의 편이 아니었다</p>
+                    <p class="desc" style="margin-top: 200px;">도시의 모든 불빛은 꺼졌고, 오직 추격자들의 숨소리만이 밤을 가득 채웠다.</p>
                 </div>
             </div>
 
             <!-- Scene 2: 발견 -->
             <div class="scene2 fade-up">
                 <p class="desc accent">'총이다!!'</p>
-                <p class="desc">은 탄환이 들어있잖아?! 살았다!!</p>
             </div>
 
             <!-- Scene 3: 리볼버 약실 (라디오 버튼 회전 방식) -->
@@ -69,45 +70,51 @@
                     </div>
 
                     <!-- 중앙 방아쇠 버튼 영역 -->
-                    <div class="center-button-area">
+                    <div class="center-button-area" style="margin-bottom: 50px;">
                         <!-- step1 상태: step2로 이동 -->
                         <label for="step2" class="btn b1">방아쇠</label>
                         <!-- step2 상태: step3으로 이동 -->
                         <label for="step3" class="btn b2">방아쇠</label>
                         <!-- step3 상태: 3번째 방아쇠 → 1초 후 해피엔딩 이동 (JS 처리) -->
-                        <div class="btn b3" id="btn3">방아쇠</div>
+                        <a href="happy_ending.html" class="btn b3 fire-btn" id="fireTrigger">방아쇠</a>
                         <!-- step4 상태: step5로 이동 -->
                         <label for="step5" class="btn b4">방아쇠</label>
                         <!-- step5 상태: step6으로 이동 (은 탄환!) -->
                         <label for="step6" class="btn b5 silver-btn">방아쇠</label>
                         <!-- step6 상태: 발사! → 생존 엔딩 페이지로 이동 -->
-                        <a href="happy_ending.html" class="btn b6 fire-btn" id="fireTrigger">발사!!</a>
+                        <div class="btn b6" id="btn3">방아쇠</div>
+
                     </div>
 
                     <!-- 단계별 안내 텍스트 -->
-                    <div class="step-hint">
+                    <div class="step-hint" style="margin-top: 20px;">
                         <span class="hint h1">찰칵...</span>
-                        <span class="hint h2">찰칵...</span>
-                        <span class="hint h3">찰칵...</span>
-                        <span class="hint h4">찰칵...</span>
-                        <span class="hint h5 gold">딸깍— 은 탄환!!</span>
-                        <span class="hint h6 fire">타앙!!</span>
+                        <span class="hint h2 first">찰칵...</span>
+                        <span class="hint h3 second">끼릭</span>
+                        <span class="hint h4 fire">탕!!</span>
+                        <span class="hint h5">찰칵!!</span>
+                        <span class="hint h6">찰칵...</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Scene 4: 사망 엔딩 (발사 안 했을 때) -->
+            <!-- Scene 4: 엔딩 분기 -->
             <div class="scene4">
+                <!-- 생존 엔딩 (성공 시) -->
+                <div class="ending survival-ending">
+                    <a href="happy_ending.html" class="end-link">승리 확인</a>
+                </div>
+
+                <!-- 사망 엔딩 (기본값) -->
                 <div class="ending death-ending">
-                    <p class="desc dim">...방아쇠를 당기지 못했다</p>
-                    <a href="bad_ending.html" class="end-link">Dead Ending →</a>
+                    <a href="bad_ending.html" class="end-link">아..?!</a>
                 </div>
             </div>
 
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- <script src="script.js"></script> -->
 </body>
 
 </html>

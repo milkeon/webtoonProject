@@ -25,8 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateParallax() {
         parallaxItems.forEach(el => {
-            const speed  = parseFloat(el.dataset.speed) || 0.1;
-            const rect   = el.getBoundingClientRect();
+            const speed = parseFloat(el.dataset.speed) || 0.1;
+            const rect = el.getBoundingClientRect();
             const offset = (window.innerHeight / 2 - rect.top - rect.height / 2) * speed;
             el.style.transform = `translateY(${offset}px)`;
         });
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fadeEls = document.querySelectorAll('.slide-up');
     const observerOptions = {
         threshold: 0.1, // 10% 노출되었을 때 시작
-        rootMargin: '0px 0px -50px 0px' 
+        rootMargin: '0px 0px -50px 0px'
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -77,6 +77,47 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    /* ── 씬 4 흡혈귀 스케일 애니메이션 (확 다가오는 느낌) ── */
+    const vampireBg = document.querySelector('.vampire-bg');
+    const scene4 = document.querySelector('.scene4');
+    const endLink = document.querySelector('.end-link');
+
+    function updateVampireZoom() {
+        if (!vampireBg || !scene4) return;
+
+        const rect = scene4.getBoundingClientRect();
+        const viewH = window.innerHeight;
+
+        if (rect.top < viewH && rect.bottom > 0) {
+            // 0 → 1 진행도: scene4가 화면에 들어올 때부터 끝날 때까지
+            const progress = Math.max(0, Math.min(1, (viewH - rect.top) / (viewH + rect.height)));
+            // 0.15 이후부터 급격히 커지는 이징
+            const eased = Math.max(0, (progress - 0.15) / 0.85);
+            const scale = 0.08 + Math.pow(eased, 2.2) * 14;
+            const opacity = Math.min(eased * 2, 1);
+
+            vampireBg.style.transform = `translateX(-50%) scale(${scale})`;
+            vampireBg.style.opacity = opacity;
+
+            // 버튼: scene4 중반부(progress > 0.3)부터 표시
+            if (endLink) {
+                if (progress > 0.3) {
+                    endLink.classList.add('visible');
+                } else {
+                    endLink.classList.remove('visible');
+                }
+            }
+        } else if (rect.top >= viewH) {
+            // scene4 아직 안 나타남 → 숨김
+            vampireBg.style.transform = 'translateX(-50%) scale(0.08)';
+            vampireBg.style.opacity = 0;
+            if (endLink) endLink.classList.remove('visible');
+        } else {
+            // scene4 완전히 지나감
+            if (endLink) endLink.classList.remove('visible');
+        }
+    }
+
     /* ── 스크롤 이벤트 (RAF 최적화) ── */
     let ticking = false;
     window.addEventListener('scroll', () => {
@@ -84,6 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
             requestAnimationFrame(() => {
                 updateProgress();
                 updateParallax();
+                updateVampireZoom();
                 ticking = false;
             });
             ticking = true;
