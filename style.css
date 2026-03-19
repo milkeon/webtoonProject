@@ -40,6 +40,18 @@ body {
     to   { transform: scale(1.2) translate(20px, 10px); }
 }
 
+/* ── 전역 히어로 배경 이미지 ── */
+.hero-bg-image {
+    position: fixed;
+    inset: 0;
+    z-index: -2; /* shimmer-bg보다 뒤에 배치 */
+    background-image: url('assets/escape.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    will-change: transform;
+}
+
 /* ── 스크롤 진행 바 ── */
 .progress-bar {
     position: fixed;
@@ -89,10 +101,7 @@ body {
     padding-top: 50vh; 
     gap: 80vh; 
     position: relative;
-    background-image: url('assets/escape.png');
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
+    /* 배경 이미지를 전역 레이어로 분리하므로 여기서는 제거 */
 }
 
 /* 어두운 오버레이로 배경과 글자 대비 확보 */
