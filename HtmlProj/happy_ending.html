@@ -84,15 +84,22 @@
             box-shadow: 0 0 40px rgba(255, 255, 255, 0.6);
         }
 
-        /* 희망 이미지 스타일 (JS에서 제어) */
+        /* 희망 이미지 스타일 (CSS Scroll-driven Animation 적용) */
         .hope-scene {
             background: #fff;
             min-height: 300vh;
-            /* 스크롤 공간 확보 */
             display: flex;
             justify-content: center;
             overflow: hidden;
             position: relative;
+            /* 스크롤 타임라인 이름 정의 */
+            view-timeline-name: --hope-timeline;
+            view-timeline-axis: block;
+        }
+
+        @keyframes hope-zoom {
+            0%, 15% { transform: translateY(-50%) scale(1); opacity: 0.8; }
+            100% { transform: translateY(-50%) scale(60); opacity: 1; }
         }
 
         .hope-img {
@@ -100,11 +107,19 @@
             height: auto;
             position: sticky;
             top: 50%;
-            /* 초기 가로 너비 맞춤 및 세로 중앙 고정 */
             transform: translateY(-50%) scale(1);
             opacity: 1;
-            transition: transform 0.1s ease-out, opacity 0.1s ease-out;
             will-change: transform, opacity;
+            /* CSS 애니메이션 연동 */
+            animation: hope-zoom linear both;
+            animation-timeline: --hope-timeline;
+            animation-range: entry 0% exit 100%;
+            animation-timing-function: cubic-bezier(0.7, 0, 0.84, 0); /* 급격한 확대 효과 */
+        }
+
+        @keyframes white-out-fade {
+            0%, 60% { opacity: 0; }
+            100% { opacity: 1; }
         }
 
         /* 화이트아웃 오버레이 */
@@ -118,6 +133,10 @@
             opacity: 0;
             pointer-events: none;
             z-index: 100;
+            /* CSS 애니메이션 연동 */
+            animation: white-out-fade linear both;
+            animation-timeline: --hope-timeline;
+            animation-range: entry 0% exit 100%;
         }
 
         @media (max-width: 800px) {
@@ -137,18 +156,18 @@
         .easter-egg a {
             display: inline-block;
             padding: 12px 35px;
-            border: 1px solid rgba(47, 0, 255, 0.6);
+            border: 2px solid rgba(47, 0, 255, 0.6);
             color: rgba(76, 0, 255, 0.6);
             text-decoration: none;
             border-radius: 50px;
-            font-size: 0.8rem;
+            font-size: 1rem;
             letter-spacing: 4px;
             transition: all 0.5s;
         }
 
         .easter-egg a:hover {
-            border-color: #f00;
-            color: #f00 !important;
+            border-color: rgb(0, 204, 255);
+            color: rgb(0, 174, 255) !important;
             background: rgba(255, 0, 0, 0.05);
             box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
         }
@@ -178,49 +197,12 @@
             </div>
 
             <div class="easter-egg">
-                <a href="https://jik-k.github.io/yugioh-card-gallery/">진 엔딩</a>
+                <a href="https://jik-k.github.io/yugioh-card-gallery/">구조 후일담</a>
             </div>
         </div>
     </div>
 
-    <script>
-        const hopeImg = document.getElementById('hopeImg');
-        const hopeScene = document.getElementById('hopeScene');
-        const whiteOut = document.getElementById('whiteOut');
-
-        window.addEventListener('scroll', () => {
-            const sceneTop = hopeScene.offsetTop;
-            const sceneHeight = hopeScene.offsetHeight;
-            const scrollPos = window.scrollY + window.innerHeight;
-
-            if (scrollPos > sceneTop) {
-                // 장면 내에서의 진행 정도 (0 ~ 1)
-                let progress = (scrollPos - sceneTop) / sceneHeight;
-                progress = Math.min(Math.max(progress, 0), 1);
-
-                // 초기 15% 구간은 너비에 맞춰 고정, 이후 급격하게 확대 (지수 함수)
-                let scale = 1;
-                if (progress > 0.15) {
-                    const zoomProgress = (progress - 0.15) / 0.85;
-                    scale = 1 + Math.pow(zoomProgress, 3) * 60; // 3제곱을 사용하여 "확" 커지는 느낌 구현
-                }
-
-                // 투명도 조절
-                const opacity = 0.8 + (progress * 0.2);
-
-                hopeImg.style.transform = `translateY(-50%) scale(${scale})`;
-                hopeImg.style.opacity = opacity;
-
-                // 마지막 40% 구간에서 화이트아웃 화광
-                if (progress > 0.6) {
-                    const whiteProgress = (progress - 0.6) / 0.4;
-                    whiteOut.style.opacity = whiteProgress;
-                } else {
-                    whiteOut.style.opacity = 0;
-                }
-            }
-        });
-    </script>
+    <!-- 스크롤 애니메이션은 이제 CSS (Scroll-driven Animation)로 처리됩니다. -->
 </body>
 
 </html>
