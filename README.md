@@ -7,7 +7,15 @@
 - **인터랙티브 스크롤 연출**: `happy_ending.html`에서 구현된 지수적 확대 및 화이트아웃 효과.
 - **다양한 결말**: 선택과 상황에 따라 달라지는 해피 엔딩, 배드 엔딩, 그리고 숨겨진 "구조 후일담".
 - **현대적인 UI/UX**: Noto Sans KR 폰트와 부드러운 애니메이션, 세련된 버튼 스타일 적용.
-- **최적화된 개발 환경**: 루트 디렉토리에서 간단한 명령어로 서버 구동 및 의존성 관리 가능.
+
+## ✨ 핵심 CSS 기술 (Tech Stack & Techniques)
+
+이 프로젝트는 자바스크립트 의존도를 낮추고 **순수 CSS**를 활용해 고도의 인터랙티브 연출을 구현하는 데 중점을 두었습니다.
+
+- **Radio Button Hack (Carousel)**: 씬 3의 리볼버 약실 회전은 자바스크립트 없이 `input[type="radio"]`와 `~` (인접 형제 선택자)만을 사용하여 6단계 회전 및 상태 전환을 구현했습니다.
+- **Parallax Scrolling**: 여러 겹의 `scene-bg-layer`와 `transform` 속성을 활용하여 깊이감 있는 공간 연출을 제공합니다.
+- **Glassmorphism & Shimmer**: `radial-gradient`와 `@keyframes` 애니메이션을 조합해 몽환적이고 일렁이는 배경(`shimmer-bg`)을 연출했습니다.
+- **Sticky Sequence**: `position: sticky`와 스크롤 위치 감지를 조합해 이미지가 화면에 고정된 채 확대되거나 변하는 시네마틱 연출을 구현했습니다.
 
 ## 🛠️ 개발 환경 및 실행 방법
 
