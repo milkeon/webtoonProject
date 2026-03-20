@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>흡혈귀의 추격 - 인터랙티브 웹툰</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="shimmer-bg"></div>
+
+    <!-- 스크롤 진행 바 -->
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <div class="mainpage">
+        <div class="content">
+
+            <!-- Scene 1: 추격 -->
+            <div class="scene1">
+                <div class="scene-bg-layer" style="background-image: url('assets/escape.png'); top: 100vh;"></div>
+                <div class="scene-bg-layer" style="background-image: url('assets/shape.png'); top: 200vh;"></div>
+                <div class="content-block parallax-item" data-speed="0.15">
+                    <p class="desc">타닥....탁.....</p>
+                </div>
+                <div class="content-block parallax-item" data-speed="0.2">
+                    <p class="desc">헉....허억.....</p>
+                </div>
+                <div class="content-block slide-up" data-delay="0">
+                    <p class="desc">인류는 어느날 갑자기 나타난 흡혈귀들로 인해 위기에 처했다.</p>
+                </div>
+
+                <div class="content-block slide-up" data-delay="150">
+                    <p class="desc" style="margin-top: 200px;">도시의 모든 불빛은 꺼졌고, 오직 추격자들의 숨소리만이 밤을 가득 채웠다.</p>
+                </div>
+                <div class="content-block slide-up" data-delay="0">
+                    <p class="desc">'안돼!!더는 못뛰겠...'</p>
+                    <p class="desc" style="margin-top: 100px; color:rgb(121, 118, 118)">턱-</p>
+                    <p class="desc" style="margin-top: 200px;">"어?"</p>
+                    <img src="assets/falldown.png" class="falldown-img">
+                    <p class="desc" style="margin: 100px 0 100px 0; color:rgb(121, 118, 118)">쿠당탕</p>
+                    <p class="desc" style="margin-top: 200px;">"어!!"</p>
+
+                </div>
+            </div>
+
+            <!-- Scene 2: 발견 -->
+            <div class="scene2 fade-up">
+
+                <p class="desc accent">'총이다!!'</p>
+            </div>
+            <div class="vampire">
+                <img src="assets/vampire.png" class="vampire-img">
+                <p class="screem">"으아아악-!!"</p>
+            </div>
+
+            <!-- Scene 3: 리볼버 약실 (라디오 버튼 회전 방식) -->
+            <div class="scene3">
+                <div class="main-wrapper">
+                    <!-- 6발 약실 제어용 라디오 버튼 -->
+                    <input type="radio" name="rotator" id="step1" checked>
+                    <input type="radio" name="rotator" id="step2">
+                    <input type="radio" name="rotator" id="step3">
+                    <input type="radio" name="rotator" id="step4">
+                    <input type="radio" name="rotator" id="step5">
+                    <input type="radio" name="rotator" id="step6">
+
+                    <!-- 반원 약실 뷰 -->
+                    <div class="carousel-view">
+                        <ul class="item-list">
+                            <li class="noitem empty">O</li>
+                            <li class="noitem empty">O</li>
+                            <li class="item silver">O</li>
+                            <li class="item silver">O</li>
+                            <li class="item silver">O</li>
+                            <li class="item silver">O</li>
+                        </ul>
+                    </div>
+
+                    <!-- 중앙 방아쇠 버튼 영역 -->
+                    <div class="center-button-area" style="margin-bottom: 50px;">
+                        <!-- step1 상태: step2로 이동 -->
+                        <label for="step2" class="btn b1">방아쇠</label>
+                        <!-- step2 상태: step3으로 이동 -->
+                        <label for="step3" class="btn b2">방아쇠</label>
+                        <!-- step3 상태: 3번째 방아쇠 → 1초 후 해피엔딩 이동 (JS 처리) -->
+                        <a href="happy_ending.html" class="btn b3 fire-btn" id="fireTrigger">방아쇠</a>
+                        <!-- step4 상태: step5로 이동 -->
+                        <label for="step5" class="btn b4">방아쇠</label>
+                        <!-- step5 상태: step6으로 이동 (은 탄환!) -->
+                        <label for="step6" class="btn b5 silver-btn">방아쇠</label>
+                        <!-- step6 상태: 발사! → 생존 엔딩 페이지로 이동 -->
+                        <div class="btn b6" id="btn3">방아쇠</div>
+
+                    </div>
+
+                    <!-- 단계별 안내 텍스트 -->
+                    <div class="step-hint" style="margin-top: 20px;">
+                        <span class="hint h1">찰칵...</span>
+                        <span class="hint h2 first">찰칵...</span>
+                        <span class="hint h3 second">끼릭</span>
+                        <span class="hint h4 fire">탕!!</span>
+                        <span class="hint h5">찰칵!!</span>
+                        <span class="hint h6">찰칵...</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 4: 엔딩 분기 -->
+            <div class="scene4">
+                <!-- 생존 엔딩 (성공 시) -->
+                <div class="ending survival-ending">
+                    <a href="happy_ending.html" class="end-link">승리 확인</a>
+                </div>
+
+                <!-- 사망 엔딩 (기본값) -->
+                <div class="ending death-ending">
+                    <a href="bad_ending.html" class="end-link">아..?!</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- <script src="script.js"></script> -->
+</body>
+
+</html>
