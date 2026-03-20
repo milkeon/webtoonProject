@@ -1,0 +1,10 @@
+{
+  "name": "antigravity-root",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "npm run dev --prefix HtmlProj",
+    "dev:html": "npm run dev --prefix HtmlProj",
+    "install:all": "npm install --prefix HtmlProj"
+  }
+}

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alive Ending</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #ffffff;
+            color: #fff;
+            font-family: 'Noto Sans KR', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .mainpage {
+            display: flex;
+            justify-content: center;
+        }
+
+        .content {
+            width: 50%;
+        }
+
+        .scene {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            background-color: gray;
+        }
+
+        /* ── 세로로 훨씬 긴 씬 설정 ── */
+        .scene-ultra-long {
+            height: auto;
+            padding-bottom: 50px;
+            /* 이미지 바로 아래 최소 여백 */
+        }
+
+        .ending-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* 빛 이미지가 화면에 꽉 차고 세로로 늘어나게 설정 */
+        .laser-img {
+            width: 100%;
+            height: 300vh;
+            /* 다시 길게 유지 */
+            object-fit: fill;
+        }
+
+        /* ── 마지막 장면 재시도 버튼 ── */
+        .retry-scene {
+            padding-bottom: 20vh;
+            justify-content: center;
+        }
+
+        .retry-link {
+            display: inline-block;
+            margin-top: 50px;
+            padding: 18px 55px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            letter-spacing: 5px;
+            transition: all 0.3s;
+        }
+
+        .retry-link:hover {
+            background: #fff;
+            color: #000;
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.6);
+        }
+
+        /* 희망 이미지 스타일 (JS에서 제어) */
+        .hope-scene {
+            background: #fff;
+            min-height: 300vh;
+            /* 스크롤 공간 확보 */
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hope-img {
+            width: 100%;
+            height: auto;
+            position: sticky;
+            top: 50%;
+            /* 초기 가로 너비 맞춤 및 세로 중앙 고정 */
+            transform: translateY(-50%) scale(1);
+            opacity: 1;
+            transition: transform 0.1s ease-out, opacity 0.1s ease-out;
+            will-change: transform, opacity;
+        }
+
+        /* 화이트아웃 오버레이 */
+        .white-out {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        @media (max-width: 800px) {
+            .content {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="white-out" id="whiteOut"></div>
+    <div class="mainpage">
+        <div class="content">
+
+            <!-- Scene 2: 세로로 길게 늘린 순수 광선 (Laser Only) -->
+            <div class="scene scene-ultra-long" id="scene2">
+                <img src="laser-beam.png" class="laser-img" alt="Long Bullet Trajectory">
+                <p
+                    style="color: rgb(41, 40, 40); font-size: 4rem; font-weight: 900; margin-top: 100px; letter-spacing: 10px;">
+                    털썩</p>
+            </div>
+            <div class="dialogue-section" style="padding: 100px 0; text-align: center; color: #333;">
+                <p style="font-size: 2.2rem; margin-bottom: 40px; font-weight: 300;">"거기 사람 있습니까? 구조대입니다"</p>
+                <p style="font-size: 2.8rem; font-weight: 900; color: #000;">"네!! 저 여기있어요!!!"</p>
+            </div>
+
+            <!-- Scene 3: 희망의 서광 (hope.jpg) - 스크롤 확대 및 화이트아웃 -->
+            <div class="hope-scene" id="hopeScene">
+                <img src="assets/hope.jpg" class="hope-img" id="hopeImg" alt="Hope">
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const hopeImg = document.getElementById('hopeImg');
+        const hopeScene = document.getElementById('hopeScene');
+        const whiteOut = document.getElementById('whiteOut');
+
+        window.addEventListener('scroll', () => {
+            const sceneTop = hopeScene.offsetTop;
+            const sceneHeight = hopeScene.offsetHeight;
+            const scrollPos = window.scrollY + window.innerHeight;
+
+            if (scrollPos > sceneTop) {
+                // 장면 내에서의 진행 정도 (0 ~ 1)
+                let progress = (scrollPos - sceneTop) / sceneHeight;
+                progress = Math.min(Math.max(progress, 0), 1);
+
+                // 초기 15% 구간은 너비에 맞춰 고정, 이후 급격하게 확대 (지수 함수)
+                let scale = 1;
+                if (progress > 0.15) {
+                    const zoomProgress = (progress - 0.15) / 0.85;
+                    scale = 1 + Math.pow(zoomProgress, 3) * 60; // 3제곱을 사용하여 "확" 커지는 느낌 구현
+                }
+
+                // 투명도 조절
+                const opacity = 0.8 + (progress * 0.2);
+
+                hopeImg.style.transform = `translateY(-50%) scale(${scale})`;
+                hopeImg.style.opacity = opacity;
+
+                // 마지막 40% 구간에서 화이트아웃 화광
+                if (progress > 0.6) {
+                    const whiteProgress = (progress - 0.6) / 0.4;
+                    whiteOut.style.opacity = whiteProgress;
+                } else {
+                    whiteOut.style.opacity = 0;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
