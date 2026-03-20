@@ -40,8 +40,9 @@
 
         /* ── 세로로 훨씬 긴 씬 설정 ── */
         .scene-ultra-long {
-            height: 600vh;
-            /* 빛을 아주 길게 늘림 */
+            height: auto;
+            padding-bottom: 50px;
+            /* 이미지 바로 아래 최소 여백 */
         }
 
         .ending-img {
@@ -53,9 +54,9 @@
         /* 빛 이미지가 화면에 꽉 차고 세로로 늘어나게 설정 */
         .laser-img {
             width: 100%;
-            height: 50%;
+            height: 300vh;
+            /* 다시 길게 유지 */
             object-fit: fill;
-            /* 빛이 세로로 쭉 늘어나도록 설정 */
         }
 
         /* ── 마지막 장면 재시도 버튼 ── */
@@ -99,7 +100,8 @@
             height: auto;
             position: sticky;
             top: 50%;
-            transform: translateY(-50%) scale(0.1);
+            /* 초기 가로 너비 맞춤 및 세로 중앙 고정 */
+            transform: translateY(-50%) scale(1);
             opacity: 1;
             transition: transform 0.1s ease-out, opacity 0.1s ease-out;
             will-change: transform, opacity;
@@ -166,17 +168,22 @@
                 let progress = (scrollPos - sceneTop) / sceneHeight;
                 progress = Math.min(Math.max(progress, 0), 1);
 
-                // 확대 효과: 0.6 -> 5배 (화면을 가득 채움)
-                const scale = 0.6 + (progress * 4.4);
-                // 투명도: 0.5 -> 1
-                const opacity = 0.5 + (progress * 0.5);
+                // 초기 15% 구간은 너비에 맞춰 고정, 이후 급격하게 확대 (지수 함수)
+                let scale = 1;
+                if (progress > 0.15) {
+                    const zoomProgress = (progress - 0.15) / 0.85;
+                    scale = 1 + Math.pow(zoomProgress, 3) * 60; // 3제곱을 사용하여 "확" 커지는 느낌 구현
+                }
+
+                // 투명도 조절
+                const opacity = 0.8 + (progress * 0.2);
 
                 hopeImg.style.transform = `translateY(-50%) scale(${scale})`;
                 hopeImg.style.opacity = opacity;
 
-                // 마지막 20% 구간에서 화이트아웃 화광
-                if (progress > 0.8) {
-                    const whiteProgress = (progress - 0.8) / 0.2;
+                // 마지막 40% 구간에서 화이트아웃 화광
+                if (progress > 0.6) {
+                    const whiteProgress = (progress - 0.6) / 0.4;
                     whiteOut.style.opacity = whiteProgress;
                 } else {
                     whiteOut.style.opacity = 0;
