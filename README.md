@@ -12,22 +12,14 @@
 ## 🛠️ 개발 환경 및 실행 방법
 
 ### 요구 사항
-- Node.js (v22.15.1 이상 권장)
-- npm (10.9.2 이상 권장)
 
 ### 실행 방법
 1. 저장소를 클론합니다.
    ```bash
    git clone https://github.com/milkeon/webtoonProject.git
    ```
-2. 루트 디렉토리에서 필요한 패키지를 설치합니다.
-   ```bash
-   npm install
-   ```
-3. 개발 서버를 구동합니다.
-   ```bash
-   npm run dev
-   ```
+2. **방법 1 (직접 실행)**: `HtmlProj/index.html` 파일을 웹 브라우저로 엽니다.
+3. **방법 2 (개발 서버)**: 루트 디렉토리에서 `npm run dev` 명령어를 통해 로컬 서버를 구동할 수도 있습니다. (선택 사항)
 
 ## 📂 프로젝트 구조
 
